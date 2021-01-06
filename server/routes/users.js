@@ -1,9 +1,7 @@
 const router = require('express').Router();
-const {
-    json
-} = require('body-parser');
-const Account = require('../models/account.model');
+const { json } = require('body-parser');
 let account = require('../models/account.model');
+let team = require('../models/team.model');
 
 
 router.route('/').get((req, res) => {
@@ -17,36 +15,80 @@ router.route('/add').post((req, res) => {
     const lastName = req.body.lastName;
     const email = req.body.email;
     const password = req.body.password;
-    const teamName = req.body.teamName;
+    const teamid = req.body.team; //by Team id
     const permission = req.body.permission;
-    console.log(teamName)
 
     const newUser = new account({
         firstName,
         lastName,
         email,
         password,
-        teamName,
+        teamid,
         permission
     })
-
+    console.log(teamid)
 
     newUser.save()
-        .then(() => res.json('User added'))
-        .catch(err => res.status(400).json('Error' + err))
-});
-// Delete user by emailId
-router.route('/remove/:emailID').delete((req, res) => {
-
-    account.findByIdAndDelete(emailID)
-        .then(() => res.json("user delete"))
-        .catch(err => res.status(400).json('Error' + err))
-
+        .then(() => {
+            console.log(newUser._id)
+            team.findById(teamid, function (err, docs) {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    console.log(docs)
+                    docs.account.push(newUser._id)
+                    console.log(docs)
+                    docs.save()
+                }
+            });
+            res.json('User added')
+        }
+        )
+        .catch(err => {
+            console.log("in error")
+            res.status(400).json('Error' + err)
+        })
 })
+// console.log("try find2 ")
+// team.findByIdAndUpdate(
+//     teamid,
+//     { account: doc._id },
+// )
+// res.json('User added')
+// Delete user by emailId
+router.route('/remove/').post((req, res) => {
+    const teamID = req.body.userTeam
+    const userID = req.body.userID
+    console.log("userID, teamID")
+    console.log(userID, teamID)
+    account.deleteOne({ _id: userID })
+        .then(() => {
+            team.findById(teamID, function (err, docs) {
+                if (err) {
+                    console.log("err")
+                    console.log(err);
+                }
+                else {
+                    console.log("in else")
+                    console.log(docs)
+                    docs.account.remove(userID)
+                    console.log(docs)
+                    docs.save()
+                }
+            });
+            res.json('User added')
+        }
+        )
+})
+// account.findByIdAndDelete(req.params.userID)
+//     .then(() => res.json("user delete"))
+//     .catch(err => res.status(400).json('Error' + err))
+
+
 // Find User exist
-router.route('/find/:emailID').post((req, res) => {
+router.route('/find/:emailID').get((req, res) => {
     try {
-        console.log(req.params.emailID)
         account.findOne({
             email: req.params.emailID
         }, function (err, obj) {
@@ -66,7 +108,7 @@ router.route('/find/:emailID').post((req, res) => {
 router.route('/login/').post((req, res) => {
 
     try {
-        Account.findOne({
+        account.findOne({
             email: req.body.email,
             password: req.body.password
         }, function (err, obj) {

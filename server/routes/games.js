@@ -1,14 +1,19 @@
 const router = require('express').Router();
 let Game = require('../models/game.model');
 
-
-
-router.route('/').get((req,res) => {
+router.route('/').get((req, res) => {
     Game.find()
-    .then(Players => res.json(Players))
-    .catch(err => res.status(400).json('Error: ' + err))
+        .then(Players => res.json(Players))
+        .catch(err => res.status(400).json('Error: ' + err))
 })
-router.route('/add/').post((req,res) => {
+
+router.route('/:byMyTeam').get((req, res) => {
+    console.log(req.params.byMyTeam)
+    Game.findById({ "myTeamHalfScore": 3 })
+        .then(games => console.log(games))
+        .catch(err => res.status(400).json('Error: ' + err))
+})
+router.route('/add/').post((req, res) => {
 
 
     const matchId = req.body.matchId;
@@ -32,38 +37,38 @@ router.route('/add/').post((req,res) => {
     const tackelsHalfTwo = req.body.tackelsHalfTwo;
     const stealHalfOne = req.body.stealHalfOne;
     const stealHalfTwo = req.body.stealHalfTwo;
-    
+
     console.log("add")
 
-    const newGame= new Game({matchId,teamId,myTeam,opponentTeam,gameDate,myTeamHalfScore,anotherHalfScore,myTeamFinalScore,anotherFinalScore,shotOnTargetHalfOne,shotOnTargetHalfTwo,shotOFFTargetHalfOne,shotOFFTargetHalfTwo,corrnerHalfOne,corrnerHalfTwo,offsidesHalfOne,offsidesHalfTwo,tackelsHalfOne,tackelsHalfTwo,stealHalfOne,stealHalfTwo})
-      
+    const newGame = new Game({ matchId, teamId, myTeam, opponentTeam, gameDate, myTeamHalfScore, anotherHalfScore, myTeamFinalScore, anotherFinalScore, shotOnTargetHalfOne, shotOnTargetHalfTwo, shotOFFTargetHalfOne, shotOFFTargetHalfTwo, corrnerHalfOne, corrnerHalfTwo, offsidesHalfOne, offsidesHalfTwo, tackelsHalfOne, tackelsHalfTwo, stealHalfOne, stealHalfTwo })
+
 
     console.log(newGame);
 
     newGame.save()
-    .then(() => res.json('Game added'))
-    .catch(err => res.status(400).json('Error' + err))
+        .then(() => res.json('Game added'))
+        .catch(err => res.status(400).json('Error' + err))
 });
-router.route('/find/:matchId').get((req,res) => {
+router.route('/find/:matchId').get((req, res) => {
     try {
-        Game.findOne({matchId: req.params.matchId}, function(err,obj) { 
+        Game.findOne({ matchId: req.params.matchId }, function (err, obj) {
             res.json(obj)
-         });
+        });
 
-       //res.json(game)
-    }catch(err){
+        //res.json(game)
+    } catch (err) {
         console.log(err)
     }
 })
-router.route('/remove/:matchId').delete((req,res) => {
+router.route('/remove/:matchId').delete((req, res) => {
     try {
-        Game.deleteOne({matchId: req.params.matchId}, function(err,obj) { 
+        Game.deleteOne({ matchId: req.params.matchId }, function (err, obj) {
             console.log("Match Delete");
             res.json("Delete")
         });
 
-       //res.json(game)
-    }catch(err){
+        //res.json(game)
+    } catch (err) {
         console.log(err)
     }
 })

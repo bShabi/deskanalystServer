@@ -15,9 +15,10 @@ app.use(express.json());
 
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, {
-    useNewUrlParser:true,
+    useNewUrlParser: true,
     useCreateIndex: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
 });
 const connection = mongoose.connection;
 connection.once('open', () => {
@@ -31,12 +32,12 @@ const playerRouter = require('./routes/players')
 const gameRouter = require('./routes/games')
 
 
-app.use('/users',userRouter);
-app.use('/teams',teamRouter);
-app.use('/players',playerRouter);
-app.use('/games',gameRouter);
+app.use('/users', userRouter);
+app.use('/teams', teamRouter);
+app.use('/players', playerRouter);
+app.use('/games', gameRouter);
 
 
-app.listen(port,() => {
+app.listen(port, () => {
     console.log(`Server is running on port : ${port}`)
 })
