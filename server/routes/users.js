@@ -66,11 +66,9 @@ router.route('/remove/').post((req, res) => {
         .then(() => {
             team.findById(teamID, function (err, docs) {
                 if (err) {
-                    console.log("err")
                     console.log(err);
                 }
                 else {
-                    console.log("in else")
                     console.log(docs)
                     docs.account.remove(userID)
                     console.log(docs)
@@ -117,8 +115,20 @@ router.route('/login/').post((req, res) => {
             } else {
                 console.log(obj)
                 const newUser = JSON.parse(JSON.stringify(obj))
-                delete newUser.password
-                res.json(newUser)
+                team.findById(newUser.teamid, function (err, obj) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        console.log("in else")
+                        newUser["teamName"] = obj.teamName
+                        delete newUser.password
+
+                        console.log(newUser)
+                        res.json(newUser)
+
+                    }
+                })
             }
         });
     } catch (err) {

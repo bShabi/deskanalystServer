@@ -4,19 +4,11 @@ const Schema = mongoose.Schema;
 
 const playerSchema = new Schema({
 
-    playerId: {
-        type: Number,
-        required: true,
-    },
-    gameId: {
-        type: Number,
-        required: true,
-    },
-    teamId: {
-        type: Number,
-        required: true,
-        trim: true,
-    },
+    gameId: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Game',
+
+    }],
     firstName: {
         type: String,
         required: true,

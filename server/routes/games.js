@@ -16,9 +16,8 @@ router.route('/:byMyTeam').get((req, res) => {
 router.route('/add/').post((req, res) => {
 
 
-    const matchId = req.body.matchId;
-    const teamId = req.body.teamId;
-    const myTeam = req.body.myTeam;
+    const teamid = req.body.teamid;
+    const myTeamName = req.body.myTeamName
     const opponentTeam = req.body.opponentTeam;
     const gameDate = req.body.gameDate;
     const myTeamHalfScore = req.body.myTeamHalfScore;
@@ -40,7 +39,7 @@ router.route('/add/').post((req, res) => {
 
     console.log("add")
 
-    const newGame = new Game({ matchId, teamId, myTeam, opponentTeam, gameDate, myTeamHalfScore, anotherHalfScore, myTeamFinalScore, anotherFinalScore, shotOnTargetHalfOne, shotOnTargetHalfTwo, shotOFFTargetHalfOne, shotOFFTargetHalfTwo, corrnerHalfOne, corrnerHalfTwo, offsidesHalfOne, offsidesHalfTwo, tackelsHalfOne, tackelsHalfTwo, stealHalfOne, stealHalfTwo })
+    const newGame = new Game({ teamid, myTeamName, opponentTeam, gameDate, myTeamHalfScore, anotherHalfScore, myTeamFinalScore, anotherFinalScore, shotOnTargetHalfOne, shotOnTargetHalfTwo, shotOFFTargetHalfOne, shotOFFTargetHalfTwo, corrnerHalfOne, corrnerHalfTwo, offsidesHalfOne, offsidesHalfTwo, tackelsHalfOne, tackelsHalfTwo, stealHalfOne, stealHalfTwo })
 
 
     console.log(newGame);
