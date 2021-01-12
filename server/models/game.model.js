@@ -106,6 +106,24 @@ const gameSchema = new Schema({
         required: true,
         trim: true,
     },
+    gameStats: {
+        distance: {
+            type: Number,
+            required: true,
+        },
+        progressive_Sprints: {
+            type: Number,
+            required: true,
+        },
+        sprints: {
+            type: Number,
+            required: true,
+        },
+        top_Speed: {
+            type: Number,
+            required: true,
+        }
+    }
 
 })
 

@@ -1,10 +1,15 @@
 const router = require('express').Router();
 let Game = require('../models/game.model');
 
-router.route('/').get((req, res) => {
-    Game.find()
-        .then(Players => res.json(Players))
-        .catch(err => res.status(400).json('Error: ' + err))
+router.route('/').get(async (req, res) => {
+    try {
+        await Game.find()
+            .then(Games => res.json(Games))
+            .catch(err => res.status(400).json('Error: ' + err))
+    } catch (error) {
+        console.log(error)
+    }
+
 })
 
 router.route('/:byMyTeam').get((req, res) => {
@@ -36,21 +41,29 @@ router.route('/add/').post((req, res) => {
     const tackelsHalfTwo = req.body.tackelsHalfTwo;
     const stealHalfOne = req.body.stealHalfOne;
     const stealHalfTwo = req.body.stealHalfTwo;
+    const gameStats = {
+        distance: req.body.gameStats.distance,
+        progressive_Sprints: req.body.gameStats.progressive_Sprints,
+        sprints: req.body.gameStats.sprints,
+        top_Speed: req.body.gameStats.top_Speed
 
-    console.log("add")
+    }
+    // console.log("req.body")
+    // console.log(req.body)
 
-    const newGame = new Game({ teamid, myTeamName, opponentTeam, gameDate, myTeamHalfScore, anotherHalfScore, myTeamFinalScore, anotherFinalScore, shotOnTargetHalfOne, shotOnTargetHalfTwo, shotOFFTargetHalfOne, shotOFFTargetHalfTwo, corrnerHalfOne, corrnerHalfTwo, offsidesHalfOne, offsidesHalfTwo, tackelsHalfOne, tackelsHalfTwo, stealHalfOne, stealHalfTwo })
+    const newGame = new Game({ teamid, myTeamName, opponentTeam, gameDate, myTeamHalfScore, anotherHalfScore, myTeamFinalScore, anotherFinalScore, shotOnTargetHalfOne, shotOnTargetHalfTwo, shotOFFTargetHalfOne, shotOFFTargetHalfTwo, corrnerHalfOne, corrnerHalfTwo, offsidesHalfOne, offsidesHalfTwo, tackelsHalfOne, tackelsHalfTwo, stealHalfOne, stealHalfTwo, gameStats })
 
 
-    console.log(newGame);
 
-    newGame.save()
-        .then(() => res.json('Game added'))
-        .catch(err => res.status(400).json('Error' + err))
+    newGame.save(function (err, game) {
+        if (err)
+            res.json(err)
+        res.json(game._id)
+    });
 });
-router.route('/find/:matchId').get((req, res) => {
+router.route('/find/:teamid').get(async (req, res) => {
     try {
-        Game.findOne({ matchId: req.params.matchId }, function (err, obj) {
+        await Game.find({ teamid: req.params.teamid }, function (err, obj) {
             res.json(obj)
         });
 
@@ -59,9 +72,9 @@ router.route('/find/:matchId').get((req, res) => {
         console.log(err)
     }
 })
-router.route('/remove/:matchId').delete((req, res) => {
+router.route('/remove/:matchId').delete(async (req, res) => {
     try {
-        Game.deleteOne({ matchId: req.params.matchId }, function (err, obj) {
+        await Game.deleteOne({ matchId: req.params.matchId }, function (err, obj) {
             console.log("Match Delete");
             res.json("Delete")
         });

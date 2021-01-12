@@ -3,8 +3,8 @@ let Team = require('../models/team.model');
 
 
 
-router.route('/').get(async (req, res) => {
-    await Team.find()
+router.route('/').get((req, res) => {
+    Team.find()
         .then(Teams => res.json(Teams))
         .catch(err => res.status(400).json('Error: ' + err))
 })

@@ -3,48 +3,53 @@ let Player = require('../models/player.model');
 let Game = require('../models/game.model')
 
 
-router.route('/').get((req, res) => {
-    Player.find()
+router.route('/').get(async (req, res) => {
+    await Player.find()
         .then(Players => res.json(Players))
         .catch(err => res.status(400).json('Error: ' + err))
 })
 router.route('/add').post((req, res) => {
 
+    try {
+        const gameId = req.body.gameID;
+        const firstName = req.body.FirstName;
+        const lastName = req.body.LastName;
+        const timeOnPitch = req.body.TimeonPitchmins;
+        const distance = req.body.Distancekm;
+        const distanceHalfOne = req.body.Distance1stHalfkm;
+        const distanceHalfTwo = req.body.Distance2ndHalfkm;
+        const progressiveSprints = req.body.ProgressiveSprints;
+        const progressiveSprintsHalfOne = req.body.ProgressiveSprints1stHalf;
+        const progressiveSprintsHalfTwo = req.body.ProgressiveSprints2ndHalf;
+        const sprints = req.body.Sprints;
+        const sprintsHalfOne = req.body.Sprints1stHalf;
+        const sprintsHalfTwo = req.body.Sprints2ndHalf;
+        const topSpeed = req.body.TopSpeedkmh;
+        const goals = req.body.goals
+        const position = req.body.position
 
-    const gameId = req.body.gameId;
-    const firstName = req.body.firstName;
-    const lastName = req.body.lastName;
-    const timeOnPitch = req.body.timeOnPitch;
-    const distance = req.body.distance;
-    const distanceHalfOne = req.body.distanceHalfOne;
-    const distanceHalfTwo = req.body.distanceHalfTwo;
-    const progressiveSprints = req.body.progressiveSprints;
-    const progressiveSprintsHalfOne = req.body.progressiveSprintsHalfOne;
-    const progressiveSprintsHalfTwo = req.body.progressiveSprintsHalfTwo;
-    const sprints = req.body.sprints;
-    const sprintsHalfOne = req.body.sprintsHalfOne;
-    const sprintsHalfTwo = req.body.sprintsHalfTwo;
-    const topSpeed = req.body.topSpeed;
-
-    const newPlayer = new Player({ gameId, firstName, lastName, timeOnPitch, distance, distanceHalfOne, distanceHalfTwo, progressiveSprints, progressiveSprintsHalfOne, progressiveSprintsHalfTwo, sprints, sprintsHalfOne, sprintsHalfTwo, topSpeed })
+        const newPlayer = new Player({ gameId, firstName, lastName, timeOnPitch, distance, distanceHalfOne, distanceHalfTwo, progressiveSprints, progressiveSprintsHalfOne, progressiveSprintsHalfTwo, sprints, sprintsHalfOne, sprintsHalfTwo, topSpeed, goals, position })
 
 
-    console.log(newPlayer);
+        console.log(newPlayer);
 
-    newPlayer.save()
-        .then(() =>
-            res.json('Player added')
-        )
-        .catch(err => res.status(400).json('Error' + err))
+        newPlayer.save()
+            .then(() =>
+                res.json('Player added')
+            )
+            .catch(err => res.json(null))
+    } catch (error) {
+        console.log(error)
+    }
+
 });
 
-router.route('/find/:playerName').get((req, res) => {
+router.route('/find/:gameID').get(async (req, res) => {
     try {
-        Game.findOne({ playerName: req.params.playerName }, function (err, obj) {
+        console.log(req.params.gameID)
+        await Player.find({ gameId: req.params.gameID }, function (err, obj) {
             res.json(obj)
         });
-
-        //res.json(game)
     } catch (err) {
         console.log(err)
     }
