@@ -49,7 +49,7 @@ router.route('/add/').post((req, res) => {
 
     }
     // console.log("req.body")
-    // console.log(req.body)
+    console.log(new Date(gameDate).toLocaleTimeString)
 
     const newGame = new Game({ teamid, myTeamName, opponentTeam, gameDate, myTeamHalfScore, anotherHalfScore, myTeamFinalScore, anotherFinalScore, shotOnTargetHalfOne, shotOnTargetHalfTwo, shotOFFTargetHalfOne, shotOFFTargetHalfTwo, corrnerHalfOne, corrnerHalfTwo, offsidesHalfOne, offsidesHalfTwo, tackelsHalfOne, tackelsHalfTwo, stealHalfOne, stealHalfTwo, gameStats })
 
@@ -58,7 +58,7 @@ router.route('/add/').post((req, res) => {
     newGame.save(function (err, game) {
         if (err)
             res.json(err)
-        res.json(game._id)
+        res.json(game)
     });
 });
 router.route('/find/:teamid').get(async (req, res) => {
@@ -72,10 +72,23 @@ router.route('/find/:teamid').get(async (req, res) => {
         console.log(err)
     }
 })
+router.route('/findgame/:gameID').get(async (req, res) => {
+    try {
+        await Game.find({ _id: req.params.gameID }, function (err, obj) {
+            res.json(obj)
+        });
+
+        //res.json(game)
+    } catch (err) {
+        console.log(err)
+    }
+})
 router.route('/remove/:matchId').delete(async (req, res) => {
     try {
-        await Game.deleteOne({ matchId: req.params.matchId }, function (err, obj) {
-            console.log("Match Delete");
+        await Game.deleteOne({ _id: req.params.matchId }, function (err, obj) {
+            if (err)
+                console.log(err)
+            console.log("Game Delete");
             res.json("Delete")
         });
 

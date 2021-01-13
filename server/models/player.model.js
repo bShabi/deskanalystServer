@@ -9,6 +9,11 @@ const playerSchema = new Schema({
         ref: 'Game',
 
     },
+    teamId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Team',
+
+    },
     goals: {
         type: Number,
         required: true
