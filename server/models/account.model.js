@@ -41,7 +41,10 @@ const accountSchema = new Schema({
         required: true,
         minlength: 3,
         trim: true,
-    }
+    },
+    // isEnable: {
+    //     type: Boolean
+    // }
 },
 );
 

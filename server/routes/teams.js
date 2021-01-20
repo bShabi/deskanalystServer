@@ -14,8 +14,26 @@ router.route('/remove/:teamID').delete(async (req, res) => {
         if (err)
             console.log(err)
         console.log("Team Delete");
-        res.json("Delete")
+        res.json("Team Delete")
     });
+})
+router.route('/update/:updateTeam').post((req, res) => {
+
+    const team = new Team(JSON.parse(req.params.updateTeam))
+    console.log("team")
+
+    console.log(team)
+    Team.update({ _id: team._id }, {
+        account: team.account,
+        teamName: team.teamName,
+
+    }, function (err, obj) {
+        if (err)
+            console.log("err" + err)
+        res.json("Success Team Update")
+    });
+
+
 })
 router.route('/add').post((req, res) => {
 
@@ -29,5 +47,16 @@ router.route('/add').post((req, res) => {
         .then(() => res.json('Team added'))
         .catch(err => res.json(null))
 });
+router.route('/findByTeamId/:teamId').get((req, res) => {
+
+    Team.findById(req.params.teamId, function (err, obj) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.json(obj.teamName)
+        }
+    });
+})
 
 module.exports = router

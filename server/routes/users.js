@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { json } = require('body-parser');
 let account = require('../models/account.model');
 let team = require('../models/team.model');
-
+let moongose = require('mongoose')
 
 router.route('/').get((req, res) => {
     account.find()
@@ -17,6 +17,7 @@ router.route('/add').post((req, res) => {
     const password = req.body.password;
     const teamid = req.body.team; //by Team id
     const permission = req.body.permission;
+    // const isEnable = true
 
     const newUser = new account({
         firstName,
@@ -24,7 +25,8 @@ router.route('/add').post((req, res) => {
         email,
         password,
         teamid,
-        permission
+        permission,
+        // isEnable
     })
     console.log(teamid)
 
@@ -83,6 +85,67 @@ router.route('/remove/').post((req, res) => {
 //     .then(() => res.json("user delete"))
 //     .catch(err => res.status(400).json('Error' + err))
 
+router.route('/update/:user').post((req, res) => {
+
+
+    const oldTeam = req.body.prevTeam
+    const user = new account(JSON.parse(req.params.user))
+
+    console.log(user)
+    console.log(oldTeam)
+    account.update({ _id: user._id }, {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        password: user.password,
+        teamid: user.teamid,
+        permission: user.permission,
+
+    }, function (err, obj) {
+        if (err)
+            console.log("err" + err)
+        team.findById(user.teamid, function (err, docs) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                console.log(docs)
+                if (!docs.account.includes(user._id))
+                    docs.account.push(user._id)
+                docs.save()
+            }
+        });
+        if (oldTeam) {
+            team.findById(oldTeam, function (err, docs) {
+                if (err) {
+                    console.log(err)
+                }
+                else {
+                    docs.account.splice(docs.account.indexOf(user._id), 1);
+                    docs.save()
+                }
+            })
+        }
+    });
+
+})
+
+router.route('/deleteTeam/:userid').post((req, res) => {
+
+    console.log(req.params.userid)
+    account.findById(req.params.userid, function (err, docs) {
+        if (err)
+            console.log(err)
+        else {
+            docs.teamid = null
+            docs.save()
+            console.log(docs)
+        }
+
+    });
+
+
+})
 
 // Find User exist
 router.route('/find/:emailID').get((req, res) => {

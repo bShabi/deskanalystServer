@@ -12,6 +12,7 @@ const playerSchema = new Schema({
     teamId: {
         type: Schema.Types.ObjectId,
         ref: 'Team',
+        required: false
 
     },
     goals: {
