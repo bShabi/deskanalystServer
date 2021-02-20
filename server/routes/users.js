@@ -5,6 +5,8 @@ let team = require('../models/team.model');
 let moongose = require('mongoose')
 const mailgun = require("mailgun-js");
 
+const DOMAIN = 'sandbox9ae2caa30d294b27a95591d729530cb4.mailgun.org';
+const mg = mailgun({ apiKey: 'eead9b31cbeeb3aa3ed5674b7c87ee62-07bc7b05-cdff2e99', domain: DOMAIN });
 
 
 
@@ -175,19 +177,11 @@ router.route('/find/:emailID').get((req, res) => {
 
 //Login 
 router.route('/login/').post((req, res) => {
-    const DOMAIN = 'sandbox9ae2caa30d294b27a95591d729530cb4.mailgun.org';
-    const mg = mailgun({ apiKey: 'eead9b31cbeeb3aa3ed5674b7c87ee62-07bc7b05-cdff2e99', domain: DOMAIN });
-    const data = {
-        from: "Mailgun Sandbox <postmaster@sandbox9ae2caa30d294b27a95591d729530cb4.mailgun.org>",
-        to: "bshabi1994@gmail.com",
-        subject: "Password Reset",
-        text: "Reset Password  A password reset event has been triggered. The password reset window is limited to two hours. If you do not reset your password within two hours, you will need to submit a new request.To complete the password reset process, visit the following link:"
-    };
-
     try {
+        const { email, password } = req.body
         account.findOne({
-            email: req.body.email,
-            password: req.body.password
+            email: email,
+            password: password
         }, function (err, obj) {
             if (err || obj === null) {
                 res.json(null)
@@ -199,12 +193,9 @@ router.route('/login/').post((req, res) => {
                         console.log(err);
                     }
                     else {
-                        newUser["teamName"] = obj.teamName
+                        obj ? newUser["teamName"] = obj.teamName : newUser["teamName"] = ' '
                         delete newUser.password
-
-                        // console.log(newUser)
                         res.json(newUser)
-
                     }
                 })
             }
@@ -212,24 +203,45 @@ router.route('/login/').post((req, res) => {
     } catch (err) {
         console.log(err)
     }
-    console.log("berfore ms");
-
-    mg.messages().send(data, function (error, body) {
-        if (error)
-            console.log(error)
-        console.log("im mailgun");
-        console.log(body);
-    });
-    console.log("after");
 })
-router.route('/restPassword').get((req, res) => {
-    res.json("In")
-    console.log("berfore ms");
+router.route('/resetpassword/:email').get((req, res) => {
+    const { email } = req.params
+    console.log(email)
+    account.findOne({
+        email: email
+    }, function (err, obj) {
+        if (err || obj === null)
+            console.log(err)
+        else {
+            const data = {
+                from: "Desk analyst <noreplay@deskanalyst.com>",
+                to: `${obj.email}`,
+                subject: "Password Reset",
+                html:
+                    `<h1> Password </h1>  <p> A password reset event has been triggered. The password is - ${obj.password} </p>`
+            };
+            mg.messages().send(data, function (error, body) {
+                if (error)
+                    console.log(error)
+                res.status(200).json("Send Email")
+                console.log(body);
+            });
+        }
+    })
 
 })
+router.route('/findByTeamId/:teamId').get((req, res) => {
+    try {
+        account.find({
+            teamid: req.params.teamId
+        }, function (err, obj) {
+            if (err)
+                res.json(null)
+            res.json(obj)
+        });
 
-// account.findOne(emailID)
-// .then(() => res.json("user delete"))
-// .catch(err => res.status(400).json('Error' + err))
-
+    } catch (err) {
+        console.log(err)
+    }
+})
 module.exports = router

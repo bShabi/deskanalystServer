@@ -49,12 +49,15 @@ router.route('/add').post((req, res) => {
 });
 router.route('/findByTeamId/:teamId').get((req, res) => {
 
+    console.log(req.params.teamId)
+
     Team.findById(req.params.teamId, function (err, obj) {
         if (err) {
             console.log(err);
         }
         else {
-            res.json(obj.teamName)
+            console.log(obj)
+            obj.teamName === null ? res.json('') : res.json(obj.teamName)
         }
     });
 })

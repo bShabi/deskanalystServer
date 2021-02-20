@@ -32,7 +32,6 @@ router.route('/add').post((req, res) => {
         const newPlayer = new Player({ gameId, teamId, firstName, lastName, timeOnPitch, distance, distanceHalfOne, distanceHalfTwo, progressiveSprints, progressiveSprintsHalfOne, progressiveSprintsHalfTwo, sprints, sprintsHalfOne, sprintsHalfTwo, topSpeed, goals, position })
 
 
-        console.log(teamId);
 
         newPlayer.save()
             .then(() =>
@@ -45,10 +44,9 @@ router.route('/add').post((req, res) => {
 
 });
 
-router.route('/find/:gameID').get(async (req, res) => {
+router.route('/find/:gameID').get((req, res) => {
     try {
-        console.log(req.params.gameID)
-        await Player.find({ gameId: req.params.gameID }, function (err, obj) {
+        Player.find({ gameId: req.params.gameID }, function (err, obj) {
             res.json(obj)
         });
     } catch (err) {
@@ -57,9 +55,8 @@ router.route('/find/:gameID').get(async (req, res) => {
 })
 router.route('/findByTeamid/:teamID').get((req, res) => {
     try {
-        console.log(req.params.teamID)
         Player.find({ teamId: req.params.teamID }, function (err, obj) {
-            console.log(obj)
+            // console.log(obj)
 
             res.json(obj)
         });
@@ -67,9 +64,9 @@ router.route('/findByTeamid/:teamID').get((req, res) => {
         console.log(err)
     }
 })
-router.route('/remove/:matchId').delete(async (req, res) => {
+router.route('/remove/:matchId').delete((req, res) => {
     try {
-        await Player.deleteMany({ gameId: req.params.matchId }, function (err, obj) {
+        Player.deleteMany({ gameId: req.params.matchId }, function (err, obj) {
             if (err)
                 console.log(err)
             console.log(" Delete game from Players");

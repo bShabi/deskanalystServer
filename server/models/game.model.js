@@ -22,7 +22,7 @@ const gameSchema = new Schema({
         trim: true,
     },
     gameDate: {
-        type: Date,
+        type: String,
         trim: true,
     },
     myTeamHalfScore: {

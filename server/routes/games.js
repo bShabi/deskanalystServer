@@ -12,9 +12,10 @@ router.route('/').get(async (req, res) => {
 
 })
 
-router.route('/:byMyTeam').get((req, res) => {
-    console.log(req.params.byMyTeam)
-    Game.findById({ "myTeamHalfScore": 3 })
+router.route('/:byTeamID').get((req, res) => {
+    var teamId = req.params.byTeamID
+    console.log(teamId)
+    Game.find({ teamid: teamId })
         .then(games => console.log(games))
         .catch(err => res.status(400).json('Error: ' + err))
 })
@@ -49,7 +50,7 @@ router.route('/add/').post((req, res) => {
 
     }
     // console.log("req.body")
-    console.log(new Date(gameDate).toLocaleTimeString)
+    console.log(gameDate)
 
     const newGame = new Game({ teamid, myTeamName, opponentTeam, gameDate, myTeamHalfScore, anotherHalfScore, myTeamFinalScore, anotherFinalScore, shotOnTargetHalfOne, shotOnTargetHalfTwo, shotOFFTargetHalfOne, shotOFFTargetHalfTwo, corrnerHalfOne, corrnerHalfTwo, offsidesHalfOne, offsidesHalfTwo, tackelsHalfOne, tackelsHalfTwo, stealHalfOne, stealHalfTwo, gameStats })
 
