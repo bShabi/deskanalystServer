@@ -1,0 +1,16 @@
+Team,Date,Session Type,Team or Player,Tracker,First Name,Last Name,Inclusion,Time on Pitch (mins),Distance (km),Distance 1st Half (km),Distance 2nd Half (km),Distance in HI (km),Distance in HI 1st Half(km),Distance in HI 2nd Half (km),Sprints,Sprints 1st Half,Sprints 2nd Half,Progressive Sprints,Progressive Sprints 1st Half,Progressive Sprints 2nd Half,Speed (km/h),Top Speed (km/h),Average Sprint Top Speed
+My team,2020.03.08,game,Team Total,-,-,-,-,58,48.66,31.51,17.15,9.72,6.41,3.31,115,115,115,44,17,27,,,
+My team,2020.03.08,game,Team Average,-,-,-,-,-,4.86,3.15,1.71,0.97,0.64,0.33,12,7,5,4,2,3,7.8,,24.3
+My team,2020.03.08,game,Player,11,Nano,Vaknin,Included,56,4.94,3.02,1.92,0.93,0.49,0.43,8,4,4,4,0,4,,25.3,23.8
+My team,2020.03.08,game,Player,12,maor,lankri,Included,57,4.46,2.91,1.55,0.78,0.55,0.23,6,6,0,0,0,0,,29.4,25.7
+My team,2020.03.08,game,Player,13,Yaari,Buchnik,Included,55,5.19,3.42,1.77,1.24,0.83,0.41,7,5,2,3,2,1,,27.3,23.6
+My team,2020.03.08,game,Player,14,Yoav,Beker,Included,55,5.29,3.56,1.74,1.62,1.11,0.51,40,28,12,12,12,0,,29.2,25.3
+My team,2020.03.08,game,Player,15,Carlos,Chakana,Included,57,4.27,2.85,1.42,0.51,0.34,0.17,4,0,4,0,0,0,,24.1,23.8
+My team,2020.03.08,game,Player,16,Omri,Gabay,Included,55,4.85,3.09,1.77,0.81,0.52,0.30,0,0,0,0,0,0,,22.3,0.0
+My team,2020.03.08,game,Player,17,Eden,Azaria,Included,55,4.93,3.17,1.76,1.01,0.69,0.32,6,4,2,2,1,1,,25.7,24.3
+My team,2020.03.08,game,Player,18,mor,zeevi,Included,55,4.38,2.92,1.46,0.61,0.45,0.16,6,2,4,2,2,0,,23.5,23.0
+My team,2020.03.08,game,Player,19,Ben,Sarussi,Included,58,4.61,2.95,1.66,1.04,0.74,0.29,28,14,14,14,0,14,,28.7,24.3
+My team,2020.03.08,game,Player,20,erez,founya,Included,55,5.73,3.63,2.10,1.18,0.69,0.49,10,3,7,7,0,7,,29.4,25.2
+Note: Team totals and averages are based on exact playing time of players.
+Note: Excluded players are not part of team total and averages.
+Note: Age dependent sprints are only relevant for youth teams

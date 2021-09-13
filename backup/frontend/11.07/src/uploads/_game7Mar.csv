@@ -1,0 +1,16 @@
+Team,Date,Session Type,Team or Player,Tracker,First Name,Last Name,Inclusion,Time on Pitch (mins),Distance (km),Distance 1st Half (km),Distance 2nd Half (km),Distance in HI (km),Distance in HI 1st Half(km),Distance in HI 2nd Half (km),Sprints,Sprints 1st Half,Sprints 2nd Half,Progressive Sprints,Progressive Sprints 1st Half,Progressive Sprints 2nd Half,Speed (km/h),Top Speed (km/h),Average Sprint Top Speed
+My team,2020.03.07,game,Team Total,-,-,-,-,90,0.00,0.00,0.00,0.00,0.00,0.00,112,59,53,23,13,10,,,
+My team,2020.03.07,game,Team Average,-,-,-,-,-,0.00,0.00,0.00,0.00,0.00,0.00,11,6,5,2,1,1,0,,24.6
+My team,2020.03.07,game,Player,11,Abba,Sisay,Included,73,0.00,0.00,0.00,0.00,0.00,0.00,17,11,6,9,6,3,,0,24.8
+My team,2020.03.07,game,Player,12,Liel,Tubul,Included,89,0.00,0.00,0.00,0.00,0.00,0.00,13,7,6,2,0,2,,0,25.1
+My team,2020.03.07,game,Player,13,Omer,Harpak,Included,85,0.00,0.00,0.00,0.00,0.00,0.00,13,7,6,1,1,0,,0,24.6
+My team,2020.03.07,game,Player,14,Yonatan,Nehemia,Included,90,0.00,0.00,0.00,0.00,0.00,0.00,19,9,10,3,2,1,,0,25.4
+My team,2020.03.07,game,Player,15,Eyal,Berger,Included,90,0.00,0.00,0.00,0.00,0.00,0.00,11,7,4,0,0,0,,0,24.0
+My team,2020.03.07,game,Player,16,Liav,Shpiz,Included,90,0.00,0.00,0.00,0.00,0.00,0.00,8,2,6,2,0,2,,0,24.1
+My team,2020.03.07,game,Player,17,Reem,Segal,Included,79,0.00,0.00,0.00,0.00,0.00,0.00,18,11,7,6,4,2,,0,25.0
+My team,2020.03.07,game,Player,18,Ofek,Buchnik,Included,90,0.00,0.00,0.00,0.00,0.00,0.00,5,2,3,0,0,0,,0,23.2
+My team,2020.03.07,game,Player,19,Ohad,Dan,Included,90,0.00,0.00,0.00,0.00,0.00,0.00,2,1,1,0,0,0,,0,25.4
+My team,2020.03.07,game,Player,20,Guy,Grudka,Included,90,0.00,0.00,0.00,0.00,0.00,0.00,6,2,4,0,0,0,,0,24.2
+Note: Team totals and averages are based on exact playing time of players.
+Note: Excluded players are not part of team total and averages.
+Note: Age dependent sprints are only relevant for youth teams

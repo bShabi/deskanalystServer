@@ -1,0 +1,48 @@
+"myTeam game, 11 Oct 2019"
+"
+
+"
+"Team Totals"
+"
+
+"
+"Distance (km)","Distance in High Intensity Zones (km)",Sprints,"Progressive Sprints"
+13.5,2.8,21,3
+"
+
+"
+"Team Averages"
+"
+
+"
+"Distance (km)","Distance in High Intensity Zones (km)",Sprints,"Progressive Sprints","Average Velocity (km/h)"
+2,0.4,3.2,0.4,5
+"
+
+"
+"Player Metrics"
+"
+
+"
+"Tracker #","First Name","Last Name","Time on Pitch (mins)","Distance (km)","Distance in High Intensity Zones (km)",Sprints,"Progressive Sprints","Avg Sprint Top Speed (km/h)"
+11,Pini,Matana,25,2,0.5,4,0,24.5
+06,Tal,Haba,31,2.1,0.4,2,1,24.9
+03,mor,zeevi,27,1.8,0.3,0,0,0
+02,Ofir,Jerby,16,1.1,0.2,2,0,23.2
+12,Aviad,Zarbiv,0,0,0,0,0,0
+09,erez,founya,27,2,0.6,4,0,25.6
+04,Meir,Derei,2,0.1,0,0,0,0
+07,Yanay,elbaz,16,1.3,0.3,7,1,24.5
+14,Ezer,Arbiv,15,0.5,0.1,0,0,0
+10,Liran,Cohen,8,0.5,0.1,0,0,0
+01,Nano,Vaknin,23,1.2,0.1,1,0,24.6
+13,Eden,Azaria,14,0.9,0.1,1,1,25.2
+"
+
+"
+"*Note: The following players are excluded from the calculation of your team's total and average metrics. Goalkeepers are always excluded. Outfield players are excluded if they were excluded manually by the coach, or if they played fewer than 15 minutes.*"
+"
+
+"
+05,oran,shiri,25,2.1,0.5,5,1,23.7
+08,maor,lankri,28,1.6,0.4,5,3,24.7

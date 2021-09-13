@@ -1,0 +1,40 @@
+"zPh9W training, 13 Sep 2019"
+"
+
+"
+"Team Totals"
+"
+
+"
+"Distance (km)","Distance in High Intensity Zones (km)",Sprints
+46.3,8.3,72
+"
+
+"
+"Team Averages"
+"
+
+"
+"Distance (km)","Distance in High Intensity Zones (km)",Sprints,"Velocity (km/h)"
+8.8,1.6,13.7,5.7
+"
+
+"
+"Player Metrics"
+"
+
+"
+"Tracker #","First Name","Last Name","Time on Pitch (mins)","Distance (km)","Distance in High Intensity Zones (km)",Sprints,"Avg Sprint Top Speed (km/h)"
+04,oran,shiri,155,12.2,2.8,20,23.5
+06,maor,lankri,155,10.1,1.7,18,25.1
+01,meir,derei,143,7.8,1.1,14,25.3
+10,mor,zeevi,120,7.7,1.2,8,24.4
+02,erez,founya,120,8.4,1.5,12,25.1
+"
+
+"
+"*Note: The following players are excluded from the calculation of your team's total and average metrics. Goalkeepers are always excluded. Outfield players are excluded if they were excluded manually by the coach, or if they played fewer than 15 minutes.*"
+"
+
+"
+08,,,149,9.5,1.7,16,24.6

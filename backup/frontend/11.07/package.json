@@ -1,0 +1,60 @@
+{
+  "name": "auto-analyst",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.11.2",
+    "@material-ui/data-grid": "^4.0.0-alpha.15",
+    "@material-ui/icons": "^4.11.2",
+    "@okta/okta-react": "^1.4.1",
+    "@okta/okta-signin-widget": "^3.9.2",
+    "axios": "^0.19.2",
+    "bootstrap": "^4.6.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "immer": "^8.0.0",
+    "jquery": "^3.5.1",
+    "moment": "^2.29.1",
+    "moment-parseplus": "^1.1.6",
+    "moment-timezone": "^0.5.32",
+    "mongoose": "^5.9.18",
+    "papaparse": "^5.2.0",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.4.3",
+    "react-datepicker": "^3.3.0",
+    "react-dom": "^16.13.1",
+    "react-filterable-table": "^0.3.434",
+    "react-moment": "^1.1.1",
+    "react-notifications": "^1.7.2",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.2.0",
+    "react-stepper-horizontal": "^1.0.11",
+    "react-toastify": "^6.2.0",
+    "react-vis": "^1.11.7",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
+    "semantic-ui-react": "^2.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
